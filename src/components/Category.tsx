@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { customCategoriesListState, categoryState } from "../atoms";
+import { categoryState, customCategorySelector } from "../atoms";
 import { Categories, ICustomCategoryForm } from "../types";
 
 const Category = () => {
@@ -11,7 +11,7 @@ const Category = () => {
   } = useForm<ICustomCategoryForm>();
   const [category, setCategory] = useRecoilState(categoryState);
   const [customCategoreisList, setCustomCategoriesList] = useRecoilState(
-    customCategoriesListState
+    customCategorySelector
   );
 
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
@@ -38,7 +38,12 @@ const Category = () => {
           ))}
       </select>
       <form onSubmit={handleSubmit(handleValid)}>
-        <input {...register("category")} placeholder="Add custom category" />
+        <input
+          {...register("category", {
+            required: "Please put custom category",
+          })}
+          placeholder="Add custom category"
+        />
         <button>+</button>
       </form>
     </>

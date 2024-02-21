@@ -13,7 +13,7 @@ function ToDoList() {
       <hr />
       <Category />
       <CreateToDo />
-      {Object.keys(toDos).map((category) => {
+      {/* {Object.keys(toDos).map((category) => {
         return (
           <div key={category}>
             <h2>{category}</h2>
@@ -21,6 +21,15 @@ function ToDoList() {
               {toDos[category].map((toDo) => (
                 <ToDo key={toDo.id} {...toDo} />
               ))}
+            </ul>
+          </div>
+        );
+      })} */}
+      {toDos.map((toDo) => {
+        return (
+          <div key={toDo.id}>
+            <ul>
+              <ToDo key={toDo.id} {...toDo} />
             </ul>
           </div>
         );

@@ -6,33 +6,36 @@ export const categoryState = atom<Categories | string>({
   default: Categories.TO_DO,
 });
 
-export const customCategoriesListState = atom<(Categories | string)[]>({
+export const customCategoryState = atom<(Categories | string)[]>({
   key: "customCategoriesList",
-  default: [],
+  default: JSON.parse(localStorage.getItem("customToDosCategories") || "[]"),
 });
 
 export const toDoState = atom<IToDo[]>({
   key: "toDos",
-  default: [],
+  default: JSON.parse(localStorage.getItem("toDos") || "[]"),
 });
 
-export const toDoSelector = selector({
+export const toDoSelector = selector<IToDo[]>({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
-    const customCategories = get(customCategoriesListState);
-    const categories = [
-      Categories.TO_DO,
-      Categories.DOING,
-      Categories.DONE,
-      ...customCategories,
-    ];
+    return toDos;
+  },
+  set: ({ set }, newValue) => {
+    set(toDoState, newValue);
+    localStorage.setItem("toDos", JSON.stringify(newValue));
+  },
+});
 
-    let results: { [key: Categories | string]: IToDo[] } = {};
-    for (let category of categories) {
-      results[category] = toDos.filter((todo) => todo.category === category);
-    }
-
-    return results;
+export const customCategorySelector = selector<(Categories | string)[]>({
+  key: "customCategorySelector",
+  get: ({ get }) => {
+    const customCategories = get(customCategoryState);
+    return customCategories;
+  },
+  set: ({ set }, newValue) => {
+    set(customCategoryState, newValue);
+    localStorage.setItem("customToDosCategories", JSON.stringify(newValue));
   },
 });

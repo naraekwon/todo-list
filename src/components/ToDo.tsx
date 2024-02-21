@@ -1,11 +1,11 @@
 import React from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { customCategoriesListState, toDoState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { customCategoryState, toDoSelector } from "../atoms";
 import { Categories, IToDo } from "../types";
 
 const ToDo = ({ id, text, category }: IToDo) => {
-  const setTodos = useSetRecoilState(toDoState);
-  const customCategories = useRecoilValue(customCategoriesListState);
+  const [, setTodos] = useRecoilState(toDoSelector);
+  const customCategories = useRecoilValue(customCategoryState);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
