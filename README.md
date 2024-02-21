@@ -1,8 +1,8 @@
 # About This Project: To Do List
 
-This project is one of the assignments during the React Master course at [Nomad Coders](https://nomadcoders.co/courses), which I'm taking in order to refresh my knowledge on React.
+This project is one of the assignments during the React Master course at [Nomad Coders](https://nomadcoders.co/courses), which I'm taking to refresh my knowledge on React.
 After this assignment is submitted and graded, customizable category feature will be removed and other features (such as priority, long-term goal, short-term goal, etc) will be implemented, inspired by [Franklin Planner](https://store.franklinplanner.com/).
-I was fascinated by Franklin Planner a lot when I was in highschool. Its concept helped me a lot on managing time to practice musical instrument as a young professionmal musician, school work as a student, and house chores as a teen who lived by herself away from her parents in order to achieve her passion to Korean traditional music. I still uses the part of the concept everyday to manage my time for myself and my family. This todo list assignment reminded me of it and idea why not making it online version! 😁
+I was fascinated by Franklin Planner a lot when I was in highschool. Its concept helped me a lot on managing time to practice musical instrument as a young professionmal musician, school work as a student, and house chores as a teen who lived by herself away from her parents in order to achieve her passion to Korean traditional music. I still use the part of the concept everyday to manage my time for myself and my family. This todo list assignment reminded me of it and idea why not making it online version! 😁
 
 This project mainly uses: react-dom, react-hook-form, recoil, recoil-persist.
 
