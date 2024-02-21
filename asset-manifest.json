@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/todo-list/static/js/main.61ab234d.js",
+    "static/media/trash-can.svg": "/todo-list/static/media/trash-can.9f85d05f3f94487a788ec1ed5454efdf.svg",
+    "index.html": "/todo-list/index.html",
+    "main.61ab234d.js.map": "/todo-list/static/js/main.61ab234d.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.61ab234d.js"
+  ]
+}
