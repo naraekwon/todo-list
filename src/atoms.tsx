@@ -1,5 +1,18 @@
 import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
 import { Categories, IToDo } from "./types";
+
+const { persistAtom: customToDosCategoriesPersistAtom } = recoilPersist({
+  key: "customToDosCategories",
+  storage: localStorage,
+  converter: JSON,
+});
+
+const { persistAtom: toDosPersistAtom } = recoilPersist({
+  key: "toDos",
+  storage: localStorage,
+  converter: JSON,
+});
 
 export const categoryState = atom<Categories | string>({
   key: "category",
@@ -9,11 +22,13 @@ export const categoryState = atom<Categories | string>({
 export const customCategoryState = atom<(Categories | string)[]>({
   key: "customCategoriesList",
   default: JSON.parse(localStorage.getItem("customToDosCategories") || "[]"),
+  effects_UNSTABLE: [customToDosCategoriesPersistAtom],
 });
 
 export const toDoState = atom<IToDo[]>({
   key: "toDos",
   default: JSON.parse(localStorage.getItem("toDos") || "[]"),
+  effects_UNSTABLE: [toDosPersistAtom],
 });
 
 export const toDoSelector = selector<IToDo[]>({
@@ -24,18 +39,5 @@ export const toDoSelector = selector<IToDo[]>({
   },
   set: ({ set }, newValue) => {
     set(toDoState, newValue);
-    localStorage.setItem("toDos", JSON.stringify(newValue));
-  },
-});
-
-export const customCategorySelector = selector<(Categories | string)[]>({
-  key: "customCategorySelector",
-  get: ({ get }) => {
-    const customCategories = get(customCategoryState);
-    return customCategories;
-  },
-  set: ({ set }, newValue) => {
-    set(customCategoryState, newValue);
-    localStorage.setItem("customToDosCategories", JSON.stringify(newValue));
   },
 });

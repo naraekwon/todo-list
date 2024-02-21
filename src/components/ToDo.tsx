@@ -1,10 +1,10 @@
 import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { customCategoryState, toDoSelector } from "../atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { customCategoryState, toDoState } from "../atoms";
 import { Categories, IToDo } from "../types";
 
 const ToDo = ({ id, text, category }: IToDo) => {
-  const [, setTodos] = useRecoilState(toDoSelector);
+  const setTodos = useSetRecoilState(toDoState);
   const customCategories = useRecoilValue(customCategoryState);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,8 +25,13 @@ const ToDo = ({ id, text, category }: IToDo) => {
     );
   };
 
+  const handleDelete = (id: IToDo["id"]) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
   return (
     <li>
+      <button onClick={() => handleDelete(id)}>Delete</button>
       <span>{text}</span>
       {category !== Categories.TO_DO && (
         <button name={Categories.TO_DO} onClick={onClick}>
