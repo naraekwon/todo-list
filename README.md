@@ -1,4 +1,4 @@
-# About This Project: To Do List
+# About This Project: [To Do List](https://naraekwon.github.io/todo-list/)
 
 This project is one of the assignments during the React Master course at [Nomad Coders](https://nomadcoders.co/courses), which I'm taking to refresh my knowledge on React.
 After this assignment is submitted and graded, customizable category feature will be removed and other features (such as priority, long-term goal, short-term goal, etc) will be implemented, inspired by [Franklin Planner](https://store.franklinplanner.com/).
@@ -15,3 +15,4 @@ This project mainly uses: react-dom, react-hook-form, recoil, recoil-persist.
 - [ ] long-term goal
 - [ ] short-term goal
 - [ ] better UI
+- [ ] edit head (favicon as well)
