@@ -31,13 +31,19 @@ export const toDoState = atom<IToDo[]>({
   effects_UNSTABLE: [toDosPersistAtom],
 });
 
-export const toDoSelector = selector<IToDo[]>({
+export const categorizedToDoSelector = selector<{ [key: string]: IToDo[] }>({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
-    return toDos;
-  },
-  set: ({ set }, newValue) => {
-    set(toDoState, newValue);
+
+    const categorizedToDos = toDos.reduce((result, todo) => {
+      if (result[todo.category]) {
+        result[todo.category].push(todo);
+      } else {
+        result[todo.category] = [todo];
+      }
+      return result;
+    }, {} as { [key: string]: IToDo[] });
+    return categorizedToDos;
   },
 });
